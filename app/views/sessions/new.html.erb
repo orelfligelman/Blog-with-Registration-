@@ -1,0 +1,29 @@
+<h3>Login</h3>
+
+
+<!--#Views for Session.-->
+
+<!--# If the status is false (see session controller for definition), alert the user-->
+<div>
+  <% if flash[:status] == FALSE %>
+      <p><%= flash[:alert]%></p>
+  <%end%>
+</div>
+
+<!--#Create the form for entering name and password-->
+
+<%= form_for(:session, :url => sessions_path) do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <!--#Create a submit button-->
+
+    <div>
+      <%= f.submit "Login" %>
+    </div>
+<% end %>

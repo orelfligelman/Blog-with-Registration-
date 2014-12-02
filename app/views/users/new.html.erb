@@ -1,13 +1,29 @@
-<h3>Registration of users</h3>
-<p>
-  For registration click <a href="http://127.0.0.1:3000/users/new">here</a>.
-  <br><br>
-  Note - If you want to see registered users(Manually). you can follow this steps
-<ul>
-  <li>Open the terminal. Go to the project folder.</li>
-  <li>Now go to db folder - "cd db"</li>
-  <li>Then run "sqlite3 development.sqlite3". Now you can type sql commands. </li>
-  <li>Type "select * from students;". You can see the list</li>
-  <li>Now quit the sqlite using ".quit" command</li>
-</ul>
-</p>
+<h1>Register</h1>
+
+<div>
+  <% if flash[:status] == TRUE %>
+      <p><%= flash[:alert] %></p>
+  <% elsif flash[:status] == FALSE %>
+      <% flash[:alert].each do |error| %>
+          <p><%= error %></p>
+      <%end%>
+  <%end%>
+</div>
+
+<%= form_for @user do |user|%>
+    <div>
+      <%= user.label(:name, "Full Name ") %>
+      <%= user.text_field :name %>
+    </div>
+    <div>
+      <%= user.label(:password, "Password ") %>
+      <%= user.password_field :password %>
+    </div>
+    <div>
+      <%= user.label(:password_confirmation, "Password Confirmation ") %>
+      <%= user.password_field :password_confirmation %>
+    </div>
+    <div>
+      <%= submit_tag "Register" %>
+    </div>
+<% end %>

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Registration</title>
+  <title>RegistrationLogin</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<% if !session[:user_id] %>
+    For new registraion click <a href="http://127.0.0.1:3000/users/new">here</a>
+<% end %>
 <%= yield %>
 
 </body>

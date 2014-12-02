@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
-  def index
-  end
+	before_action :check_login, :only => [:index]
 
-  def show
-  end
+	def index
+	end
 
-  def new
+	def show
+	end
+
+	def new
 		@user = User.new
 	end
 
@@ -13,11 +15,13 @@ class UsersController < ApplicationController
 		params.require(:user).permit(:name, :password, :password_confirmation)
 	end
 
+
 	def create
 		@user = User.new(user_params)
+
 		if @user.save
 			flash[:status] = TRUE
-			flash[:alert] = "Hooray"
+			flash[:alert] = "Congo! You have successfully registered .. "
 		else
 			flash[:status] = FALSE
 			flash[:alert] = @user.errors.full_messages
